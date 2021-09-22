@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 echo "husky commit"
-yarn workspace hello-one jest
+yarn workspaces run jest

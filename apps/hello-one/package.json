@@ -12,6 +12,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "husky": "^7.0.2",
+    "jest-cucumber": "^3.0.1",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0"
   },
