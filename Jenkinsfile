@@ -25,11 +25,11 @@ pipeline {
                     allowMissing         : true,
                     alwaysLinkToLastBuild: true,
                     keepAll              : true,
-                    reportDir            : 'output/coverage/jest',
+                    reportDir            : "branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
                     reportFiles          : 'index.html',
-                    reportName           : 'Test Report'
+                    reportName           : 'TestReport'
                 ]
-                junit  allowEmptyResults: true, testResults: '**/**/*index.html'
+                // junit  allowEmptyResults: true, testResults: '**/**/*index.html'
                 }
             }
         }
