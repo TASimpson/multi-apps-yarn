@@ -31,12 +31,10 @@ pipeline {
                         publishHTML([
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
-                            includes: '**/*',
                             keepAll: true,
-                            reportDir: 'reports/',
-                            reportFiles: 'report.html',
-                            reportName: 'HTML Report',
-                            reportTitles: 'FH BP'
+                            reportDir: "/var/libe/jenkins/job/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
+                            reportFiles: 'index.html',
+                            reportName: 'TestReport'
                         ])
                     }
                 }           
