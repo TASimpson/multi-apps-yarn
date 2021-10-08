@@ -17,9 +17,7 @@ pipeline {
         }
         stage('Unit Tests') {
             try {
-                steps {
-                    sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
-                }
+                sh 'yarn workspaces run jest --coverage'
             }
                 catch(err) {
                     echo "error ${err}"
