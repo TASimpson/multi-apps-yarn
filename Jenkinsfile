@@ -25,6 +25,20 @@ pipeline {
                         echo "what ${err} ${currentBuild.result}"
                     }
                 }
+                post {
+                    always {
+                        publishHTML([
+                            allowMissing: false,
+                            alwaysLinkToLastBuild: false,
+                            includes: '**/*',
+                            keepAll: true,
+                            reportDir: 'reports/',
+                            reportFiles: 'report.html',
+                            reportName: 'HTML Report',
+                            reportTitles: 'FH BP'
+                        ])
+                    }
+                }
             }            
         }
         stage('e2e Tests') {
