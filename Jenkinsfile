@@ -21,15 +21,13 @@ pipeline {
             }
             post {
                 always {
-                publishHTML target: [
-                    allowMissing         : false,
-                    alwaysLinkToLastBuild: false,
-                    keepAll              : true,
-                    reportDir            : 'output/coverage/jest',
-                    reportFiles          : 'index.html',
-                    reportName           : 'Test Report'
-                ]
-                junit 'output/coverage/jest'
+                publishHTML (target : [allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'myreport.html',
+                    reportName: 'My Reports',
+                    reportTitles: 'The Report'])
                 }
             }
         }
