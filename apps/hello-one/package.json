@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --coverage",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
   },
@@ -66,19 +66,6 @@
         }
       }
     ]
-  },
-  "jest": {
-    "coverageReporters": [
-      "text",
-      "html"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90
-      }
-    }
   },
   "browserslist": [
     "> 1%",
