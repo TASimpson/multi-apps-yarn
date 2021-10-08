@@ -25,7 +25,7 @@ pipeline {
                     allowMissing         : true,
                     alwaysLinkToLastBuild: true,
                     keepAll              : true,
-                    reportDir            : "branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
+                    reportDir            : "../*/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
                     reportFiles          : 'index.html',
                     reportName           : 'TestReport'
                 ]
