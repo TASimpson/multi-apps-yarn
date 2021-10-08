@@ -21,15 +21,22 @@ pipeline {
             }
             post {
                 always {
-                publishHTML target: [
-                    allowMissing         : true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll              : true,
-                    reportDir            : "../*/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
-                    reportFiles          : 'index.html',
-                    reportName           : 'TestReport'
-                ]
-                // junit  allowEmptyResults: true, testResults: '**/**/*index.html'
+                    publishHTML (target : [allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'reports',
+                        reportFiles: 'myreport.html',
+                        reportName: 'My Reports',
+                        reportTitles: 'The Report'])
+                // publishHTML target: [
+                //     allowMissing         : true,
+                //     alwaysLinkToLastBuild: true,
+                //     keepAll              : true,
+                //     reportDir            : "../*/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
+                //     reportFiles          : 'index.html',
+                //     reportName           : 'TestReport'
+                // ]
+                junit  allowEmptyResults: true, testResults: "jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport"
                 }
             }
         }
