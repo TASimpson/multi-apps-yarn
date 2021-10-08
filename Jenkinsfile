@@ -18,15 +18,14 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 script {
-try {
-                sh 'yarn workspaces run jest --coverage'
-            }
-                catch(err) {
-                    echo "error ${err}"
+                    try {
+                        sh 'yarn workspaces run jest --coverage'
+                    }
+                    catch(err) {
+                        echo "what ${err} ${currentBuild.result}"
+                    }
                 }
-                }
-            }
-            
+            }            
         }
         stage('e2e Tests') {
             steps {
