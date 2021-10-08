@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Unit Tests') {
             steps {
-                sh 'yarn workspaces run jest'
+                sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
             }
         }
         stage('e2e Tests') {
