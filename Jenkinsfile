@@ -15,10 +15,15 @@ pipeline {
                 sh "yarn install"
             }            
         }
-        try {
+        
         stage('Unit Tests') {
             steps {
+                try {
                 sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
+                }
+                catch(err) {
+                    echo "error ${err}"
+                }
             }           
             
             post {
@@ -42,11 +47,6 @@ pipeline {
                 }
             }
         }
-        }
-            catch(err) {
-                echo "error here: ${err}"
-
-            }
         stage('e2e Tests') {
             steps {
                 sh 'yarn workspaces run test:e2e'
