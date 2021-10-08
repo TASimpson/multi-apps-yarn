@@ -21,15 +21,15 @@ pipeline {
             }
             post {
                 always {
-                // publishHTML target: [
-                //     allowMissing         : false,
-                //     alwaysLinkToLastBuild: false,
-                //     keepAll              : true,
-                //     reportDir            : 'output/coverage/jest',
-                //     reportFiles          : 'index.html',
-                //     reportName           : 'Test Report'
-                // ]
-                junit 'results/cypress-report.xml'
+                publishHTML target: [
+                    allowMissing         : true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll              : true,
+                    reportDir            : 'output/coverage/jest',
+                    reportFiles          : 'index.html',
+                    reportName           : 'Test Report'
+                ]
+                junit  allowEmptyResults: true, testResults: '**/**/*index.html'
                 }
             }
         }
