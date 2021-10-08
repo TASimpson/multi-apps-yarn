@@ -7,19 +7,19 @@ const feature = loadFeature("features/example.feature", { loadRelativePath : tru
 
 defineFeature(feature, (test) => {
   test("Opening the initial web page", ({ given, when, then }) => {
-    console.log('test');
-    // let wrapper: VueWrapper<any>;
+    let wrapper: VueWrapper<any>;
 
-    // given("The page is open in a browser", () => {
-    //   wrapper = shallowMount(HelloWorld);
-    // });
+    given("The page is open in a browser", () => {
+      wrapper = shallowMount(HelloWorld);
+    });
 
-    // when("I inspect the page", () => {
-    //   //Nothing here just need it
-    // });
+    when("I inspect the page", () => {
+      //Nothing here just need it
+    });
 
-    // then("I should see the landing page", () => {
-    //   expect(wrapper.html()).toMatch(/^<div.*/);
-    // });
+    then("I should see the landing page", () => {
+      // expect(wrapper.html()).toMatch(/^<div.*/);
+      console.log('here here');
+    });
   });
 });
