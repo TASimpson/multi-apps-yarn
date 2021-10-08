@@ -20,10 +20,10 @@ pipeline {
                 steps {
                     sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
                 }
+            }
                 catch(err) {
                     echo "error ${err}"
                 }
-            }           
         }
         stage('e2e Tests') {
             steps {
