@@ -16,12 +16,17 @@ pipeline {
             }            
         }
         stage('Unit Tests') {
-            try {
+            steps {
+                script {
+try {
                 sh 'yarn workspaces run jest --coverage'
             }
                 catch(err) {
                     echo "error ${err}"
                 }
+                }
+            }
+            
         }
         stage('e2e Tests') {
             steps {
