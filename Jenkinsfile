@@ -19,6 +19,19 @@ pipeline {
             steps {
                 sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
             }
+            post {
+                always {
+                publishHTML target: [
+                    allowMissing         : false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll              : true,
+                    reportDir            : 'output/coverage/jest',
+                    reportFiles          : 'index.html',
+                    reportName           : 'Test Report'
+                ]
+                junit 'output/coverage/jest'
+                }
+            }
         }
         stage('e2e Tests') {
             steps {
