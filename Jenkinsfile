@@ -15,37 +15,15 @@ pipeline {
                 sh "yarn install"
             }            
         }
-        
         stage('Unit Tests') {
-            steps {
-                try {
-                sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
+            try {
+                steps {
+                    sh 'yarn workspaces run jest --coverage --coverageDirectory=output/coverage/jest'
                 }
                 catch(err) {
                     echo "error ${err}"
                 }
             }           
-            
-            post {
-                always {
-                    // publishHTML (target : [allowMissing: false,
-                    //     alwaysLinkToLastBuild: true,
-                    //     keepAll: true,
-                    //     reportDir: 'reports',
-                    //     reportFiles: 'myreport.html',
-                    //     reportName: 'My Reports',
-                    //     reportTitles: 'The Report'])
-                // publishHTML target: [
-                //     allowMissing         : true,
-                //     alwaysLinkToLastBuild: true,
-                //     keepAll              : true,
-                //     reportDir            : "../*/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
-                //     reportFiles          : 'index.html',
-                //     reportName           : 'TestReport'
-                // ]
-                // junit  allowEmptyResults: true, testResults: "jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport"
-                }
-            }
         }
         stage('e2e Tests') {
             steps {
