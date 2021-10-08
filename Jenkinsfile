@@ -22,7 +22,7 @@ pipeline {
                         sh 'yarn workspaces run jest --coverage'
                     }
                     catch(err) {
-                        slackSend channel: '#jenkins', color: COLOR_MAP['FAILURE'], message: "*FAILURE:* The tests for the job: ${env.JOB_NAME} on build: ${env.BUILD_NUMBER} did not meet requirements. \n More info at: ${env.BUILD_URL}"
+                        slackSend channel: '#jenkins', color: COLOR_MAP['FAILURE'], message: "*FAILURE:* The tests for ${env.JOB_NAME} on build# ${env.BUILD_NUMBER} did not meet requirements. \n More info at: ${env.BUILD_URL}"
                         echo "what ${err} ${currentBuild.result}"
                         throw err
                     }
