@@ -25,7 +25,8 @@ pipeline {
                         echo "what ${err} ${currentBuild.result}"
                     }
                 }
-                post {
+            }
+            post {
                     always {
                         publishHTML([
                             allowMissing: false,
@@ -38,8 +39,7 @@ pipeline {
                             reportTitles: 'FH BP'
                         ])
                     }
-                }
-            }            
+                }           
         }
         stage('e2e Tests') {
             steps {
