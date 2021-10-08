@@ -22,22 +22,12 @@ pipeline {
                         sh 'yarn workspaces run jest --coverage'
                     }
                     catch(err) {
+                        slackSend channel: '#jenkins', color: COLOR_MAP['FAILURE'], message: "*FAILURE:* The tests for the job: ${env.JOB_NAME} on build: ${env.BUILD_NUMBER} did not meet requirements. \n More info at: ${env.BUILD_URL}"
                         echo "what ${err} ${currentBuild.result}"
+                        throw err
                     }
                 }
             }
-            post {
-                    always {
-                        publishHTML([
-                            allowMissing: false,
-                            alwaysLinkToLastBuild: false,
-                            keepAll: true,
-                            reportDir: "/var/lib/jenkins/job/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
-                            reportFiles: 'index.html',
-                            reportName: 'TestReport'
-                        ])
-                    }
-                }           
         }
         stage('e2e Tests') {
             steps {
