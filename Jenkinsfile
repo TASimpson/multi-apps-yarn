@@ -32,7 +32,7 @@ pipeline {
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
                             keepAll: true,
-                            reportDir: "/var/libe/jenkins/job/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
+                            reportDir: "/var/lib/jenkins/job/jenkins-unit-tests-main/branches/main/builds/${env.BUILD_NUMBER}/htmlreports/TestReport",
                             reportFiles: 'index.html',
                             reportName: 'TestReport'
                         ])
