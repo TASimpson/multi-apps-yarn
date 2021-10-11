@@ -28,6 +28,18 @@ pipeline {
                     }
                 }
             }
+            post {
+                always {
+                publishHTML target: [
+                    allowMissing         : false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll              : true,
+                    reportDir            : "output/coverage/jest",
+                    reportFiles          : 'index.html',
+                    reportName           : 'TestReport'
+                ]
+                }
+            }
         }
         stage('e2e Tests') {
             steps {
