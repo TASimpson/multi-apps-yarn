@@ -5,7 +5,7 @@ module.exports = {
   },
   testMatch: ["**/unit/*.*.ts"],
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{js,vue}', '!src/main.js'],
+  collectCoverageFrom: ['src/components/*.{js,vue}'],
   coverageThreshold: {
     global: {
       branches: 90,

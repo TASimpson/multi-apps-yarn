@@ -34,7 +34,7 @@ pipeline {
                     allowMissing         : false,
                     alwaysLinkToLastBuild: true,
                     keepAll              : true,
-                    reportDir            : "output/coverage/jest",
+                    reportDir            : "apps/*/coverage/lcov-report",
                     reportFiles          : 'index.html',
                     reportName           : 'TestReport'
                 ]
