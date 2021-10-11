@@ -15,14 +15,14 @@ pipeline {
                 sh "yarn install"
             }            
         }
-        stage('Unit Tests') {
+        stage('Unit Tests For Hello-One App') {
             steps {
                 script {
                     try {
-                        sh 'yarn workspaces run jest --coverage'
+                        sh 'yarn workspace hello-one run jest --coverage'
                     }
                     catch(err) {
-                        slackSend channel: '#jenkins', color: COLOR_MAP['FAILURE'], message: "*FAILURE:* The tests for ${env.JOB_NAME} on build# ${env.BUILD_NUMBER} did not meet requirements. \n More info at: ${env.BUILD_URL}"
+                        slackSend channel: '#jenkins', color: COLOR_MAP['FAILURE'], message: "*FAILURE:* The tests for ${env.JOB_NAME}, application hello-one, on build# ${env.BUILD_NUMBER} did not meet requirements. \n More info at: ${env.BUILD_URL}/HelloOne_TestCoverage"
                         echo "what ${err} ${currentBuild.result}"
                         throw err
                     }
@@ -34,9 +34,35 @@ pipeline {
                     allowMissing         : false,
                     alwaysLinkToLastBuild: true,
                     keepAll              : true,
-                    reportDir            : "apps/*/coverage/lcov-report",
+                    reportDir            : "apps/hello-one/coverage/lcov-report",
                     reportFiles          : 'index.html',
-                    reportName           : 'TestReport'
+                    reportName           : 'HelloOne_TestCoverage'
+                ]
+                }
+            }
+        }
+        stage('Unit Tests For Hello-Two App') {
+            steps {
+                script {
+                    try {
+                        sh 'yarn workspace hello-two run jest --coverage'
+                    }
+                    catch(err) {
+                        slackSend channel: '#jenkins', color: COLOR_MAP['FAILURE'], message: "*FAILURE:* The tests for ${env.JOB_NAME}, application hello-two, on build# ${env.BUILD_NUMBER} did not meet requirements. \n More info at: ${env.BUILD_URL}/HelloTwo_TestCoverage"
+                        echo "what ${err} ${currentBuild.result}"
+                        throw err
+                    }
+                }
+            }
+            post {
+                always {
+                publishHTML target: [
+                    allowMissing         : false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll              : true,
+                    reportDir            : "apps/hello-two/coverage/lcov-report",
+                    reportFiles          : 'index.html',
+                    reportName           : 'HelloTwo_TestCoverage'
                 ]
                 }
             }
